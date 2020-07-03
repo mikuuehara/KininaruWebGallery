@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<meta http-equiv="content-type" charset="utf-8">
+<html>
+
+<head>
+  <title>Webデザインギャラリーサイト</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="content-type" charset="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
+</head>
+
+<body>
+  <form method="POST">
+    <h1>カテゴリ</h1>
+    {% csrf_token %}
+    {{ category_selected_form.as_p }}
+    <button type="submit">登録</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<meta http-equiv="content-type" charset="utf-8">
+<html>
+
+<head>
+  <title>管理者画面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="content-type" charset="utf-8">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!--
+  <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
+  -->
+</head>
+<body>
+
+    <h1>サイト情報</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ siteinf_form.as_p }}
+        <button type="submit" name="siteinf">登録</button>
+    </form>
+    <div>
+        {% if message_siteinf %}
+        {{ message_siteinf }}
+        {% endif %}
+    </div>
+
+    <h1>色の登録</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ color_form.as_p }}
+        <button type="submit" name="color">登録</button>
+    </form>
+    <div>
+        {% if message_color %}
+        {{ message_color }}
+        {% endif %}
+    </div>
+
+    <h1>カテゴリの登録</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ category_form.as_p }}
+        <button type="submit" name="category">登録</button>
+    </form>
+    <div>
+        {% if message_category %}
+        {{ message_category }}
+        {% endif %}
+    </div>
+
+</body>
+</html>
