@@ -1,30 +1,42 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from gallery.models import Sitecategory, Sitecolor, Website
 from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm
 from django.views.generic import TemplateView
 
 
-# top page #
+### top page ###
 class top(TemplateView):
     select_form_class = SelectForm
     template_name ='gallery/top.html'
     print("頑張れー！")
 
     def get(self, request):
-        print(self.select_form_class)
         context = {
-                ' category_selected_form': self.select_form_class(),
+                'selecte_form': self.select_form_class(),
                 }
         return render(request, 'gallery/top.html', context)
 
-    #def post(self, request):
-    #    print(self.request.POST['category'])
-    #    return render(request, 'gallery/top.html')
+    def post(self, request):
+        context = {
+            'color' : self.request.POST.getlist("color")
+        }
+        #??????????????????????????????????
+        return redirect('kininaru')
 
-    
 
 
-# management page #
+class kininaru(TemplateView):
+    template_name = 'gallery/kininaru.html'
+
+    def get(self, request):
+        print("いまここですよ")
+        context = {
+            'siteinfs' : Website.objects.all(),
+        }
+        return render(request, 'gallery/kininaru.html', context)  
+
+
+### management page ###
 class register(TemplateView):
     color_form_class = ColorForm
     category_form_class = CategoryForm
@@ -32,7 +44,7 @@ class register(TemplateView):
     template_name = 'gallery/management.html'
 
 
-    # when fitst acsessed #
+    ### when fitst acsessed ###
     def get(self, request):
         # return empty fields #
         print(self.siteinf_form_class())
@@ -43,7 +55,7 @@ class register(TemplateView):
                 }
         return render(self.request, 'gallery/management.html', context)
 
-    # when posted #
+    ### when posted ###
     def post(self, request):
         color_form = self.color_form_class(request.POST)
         category_form = self.category_form_class(request.POST)
@@ -52,7 +64,7 @@ class register(TemplateView):
                                         category_form=category_form,
                                         siteinf_form=siteinf_form)
 
-        # posted website information #
+        ### posted website information ###
         if 'siteinf' in self.request.POST:
             if siteinf_form.is_valid():
                 self.form_save(siteinf_form)
@@ -65,7 +77,7 @@ class register(TemplateView):
                     }
                 return render(self.request, 'gallery/management.html', context)
 
-        # posted color #
+        ### posted color ###
         elif 'color' in self.request.POST:
             if color_form.is_valid():
                 self.form_save(color_form)
@@ -78,7 +90,7 @@ class register(TemplateView):
                     }
                 return render(self.request, 'gallery/management.html', context)
 
-        # posted category #
+        ### posted category ###
         elif 'category' in self.request.POST:
             if category_form.is_valid():
                 self.form_save(category_form)
@@ -95,7 +107,7 @@ class register(TemplateView):
            
         return render(self.request, 'gallery/management.html', context)
 
-    # save the form information #
+    ### save the form information ###
     def form_save(self, form):
         obj = form.save()
         return obj
