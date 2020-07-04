@@ -4,26 +4,24 @@
 <html>
 
 <head>
-  <title>評価画面</title>
+  <title>評価結果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-type" charset="utf-8">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/evaluation.css' %}">
   <!--
+  <link rel="stylesheet" type="text/css" href="{% static 'css/evaluation.css' %}">
   <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
   -->
 </head>
 <body>
-  <h1>気になる</h1>
-  <form action="" method="POST">
-    {% csrf_token %}
+  <h1>結果</h1>
+  
     {{ eval_form.as_p }}
     {% for siteinf in siteinfs %}
     <img src="{{ siteinf.img_pc.url }}"/>
     {% endfor %}
-    <button type="submit" name="eval">登録</button>
-</form>
-  
+
+
  
 </body>
 </html>

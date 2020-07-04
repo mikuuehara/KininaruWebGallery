@@ -10,6 +10,7 @@ class top(TemplateView):
     eval_form_class = EvalForm
     template_name ='gallery/top.html'
     print("頑張れー！")
+    print("いまtoppageです")
 
     def get(self, request):
         context = {
@@ -18,45 +19,47 @@ class top(TemplateView):
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
-        #だめだ～
-        #selected_color = self.request.POST.getlist("color")
-        #for a in selected_color:
-        #    color_id = int(a)
-        #print(color_id)
-        self.eval_form_class().fields['eval'].queryset = Website.objects.filter(id=2)
+        ### 選ばれた色を取り出してリストに変換 ###
+        selected_color_id_list = []
+        for a in (self.request.POST.getlist("color")):
+            selected_color_id_list.append(int(a))
+
+        ### 選ばれたカテゴリを取り出してリストに変換 ###
+        selected_category_id_list = []
+        for b in (self.request.POST.getlist("category")):
+            selected_category_id_list.append(int(b))
+
+        ### Websiteオブジェクトにフィルターかける ###
+        filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
+
         context = {
-            'eval_form' : self.eval_form_class(),
-            'siteinf' : Website.objects.all(),
+            'eval_form' : self.eval_form_class(queryset=filter1),
+            'siteinfs' : filter1,
         }
-        #全然フィルターかかってないなんで～
+
+        ### 表示順と表示数は最悪無くてもいいから後回しにしましょう ###
+    
         return render(request, 'gallery/evaluation.html', context)
-
-
-#def top(request):
-#    if request.method == "POST":
-#        context = {
-#            'color' : request.POST.getlist("color"),
-#        }
-#        return render(request, 'gallery/evaluation.html', context)
-#
-#    else:
-#        context = {
-#                'selecte_form': SelectForm(),
-#                }
-#        return render(request, 'gallery/top.html', context)
 
 
 
 
 class evaluation(TemplateView):
-    template_name = 'gallery/evaluation.html'
+    #template_name = 'gallery/evaluation.html'
+    print("いまevaluationページです")
+    def post(self, request):
+        print(self.request.POST.getlist("eval"))
+        context = {
+            'siteinfs' : self.request.POST.getlist("eval")
+        }
+        return render(request, 'gallery/result.html', context)  
+
+
+class result(TemplateView):
+    template_name = 'gallery/result.html'
 
     def get(self, request):
-        print("いまここですよ")
-        context = {
-            'siteinfs' : Website.objects.all(),
-        }
-        return render(request, 'gallery/evaluation.html', context)  
+        return render(request, 'gallery/result.html')
 
 
 ### management page ###
