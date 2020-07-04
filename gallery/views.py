@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from gallery.models import Sitecategory, Sitecolor, Website
-from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm
+from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm, EvalForm
 from django.views.generic import TemplateView
 
 
 ### top page ###
 class top(TemplateView):
     select_form_class = SelectForm
+    eval_form_class = EvalForm
     template_name ='gallery/top.html'
     print("頑張れー！")
 
@@ -17,23 +18,45 @@ class top(TemplateView):
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
+        #だめだ～
+        #selected_color = self.request.POST.getlist("color")
+        #for a in selected_color:
+        #    color_id = int(a)
+        #print(color_id)
+        self.eval_form_class().fields['eval'].queryset = Website.objects.filter(id=2)
         context = {
-            'color' : self.request.POST.getlist("color")
+            'eval_form' : self.eval_form_class(),
+            'siteinf' : Website.objects.all(),
         }
-        #??????????????????????????????????
-        return redirect('kininaru')
+        #全然フィルターかかってないなんで～
+        return render(request, 'gallery/evaluation.html', context)
+
+
+#def top(request):
+#    if request.method == "POST":
+#        context = {
+#            'color' : request.POST.getlist("color"),
+#        }
+#        return render(request, 'gallery/evaluation.html', context)
+#
+#    else:
+#        context = {
+#                'selecte_form': SelectForm(),
+#                }
+#        return render(request, 'gallery/top.html', context)
 
 
 
-class kininaru(TemplateView):
-    template_name = 'gallery/kininaru.html'
+
+class evaluation(TemplateView):
+    template_name = 'gallery/evaluation.html'
 
     def get(self, request):
         print("いまここですよ")
         context = {
             'siteinfs' : Website.objects.all(),
         }
-        return render(request, 'gallery/kininaru.html', context)  
+        return render(request, 'gallery/evaluation.html', context)  
 
 
 ### management page ###

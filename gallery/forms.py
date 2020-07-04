@@ -53,3 +53,10 @@ class SelectForm(forms.Form):
         choices=turn_choicies,
         required=True
     )
+
+class EvalForm(forms.Form):
+    eval = forms.ModelMultipleChoiceField(
+        label='評価', 
+        queryset=Website.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+        )
