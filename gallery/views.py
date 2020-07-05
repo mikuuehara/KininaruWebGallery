@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
+from django import forms
 from gallery.models import Sitecategory, Sitecolor, Website
 from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm, EvalForm
 from django.views.generic import TemplateView
+from gallery.widgets import CustomCheckboxSelectMultiple, CustomCheckboxSelectMultiple2
+
 
 
 ### top page ###
@@ -18,8 +21,7 @@ class top(TemplateView):
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
-        
-        ### posted selectform ###
+        ### 未選択のオブジェクトが取得できそうに無かったのでformを変えてみる ###
         if 'select' in self.request.POST: 
             ### 選ばれた色をリストとして取り出す ###
             selected_color_id_list = self.request.POST.getlist("color")
@@ -39,27 +41,40 @@ class top(TemplateView):
                 else:
                     filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
 
+            selected_site_list = filter1.values_list('name', flat=True)
+            ### formにフィールドを追加 ###
+            good_bad = (
+                ('good', 'good'),
+                ('bad', 'bad')
+            )
+            eval_form = forms.Form()
+            for selected_site_name in list(selected_site_list): 
+                eval_form.fields[selected_site_name] = forms.ChoiceField(
+                    choices = good_bad,
+                    required=True,
+                    widget=CustomCheckboxSelectMultiple2
+                )
+
             context = {
-                'eval_form' : self.eval_form_class(queryset=filter1),
+                'eval_form' : eval_form,
                 'siteinfs' : filter1,
             }
-
-            ### 表示順と表示数は最悪無くてもいいから後回しでいいよ ###
-        
             return render(request, 'gallery/evaluation.html', context)
         
         ### posted evalform ###
         if 'eval' in self.request.POST:
             ### なぜかリストの最後に '' が入っているからそれを除く ###
-            eval_list = []
-            for a in (self.request.POST.getlist("eval")):
-                if a != '':
-                    eval_list.append(a)
-            eval_result = Website.objects.filter(id__in = eval_list)
-            context = {
-                'selected_siteinfs' : eval_result
-            }
-            return render(request, 'gallery/result.html', context)  
+            #eval_list = []
+            #for a in (self.request.POST.getlist("eval")):
+            #    if a != '':
+            #        eval_list.append(a)
+            #eval_result = Website.objects.filter(id__in = eval_list)
+            #context = {
+            #    'selected_siteinfs' : eval_result
+            #}
+
+            print(self.request.POST)
+            return render(request, 'gallery/result.html')  
 
 
 

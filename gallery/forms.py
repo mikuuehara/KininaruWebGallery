@@ -67,16 +67,6 @@ class SelectForm(forms.Form):
 
 
 ### 表示されたサイトを評価 ###
+
 class EvalForm(forms.Form):
-    eval = forms.ModelMultipleChoiceField(
-        label='評価', 
-        queryset=Website.objects.all(),
-        required=False,
-        widget=CustomCheckboxSelectMultiple2
-        #widget=forms.CheckboxSelectMultiple
-        )
-    ### querysetを動的に変更 ###
-    def __init__(self, queryset=None, *args, **kwargs):
-        super(EvalForm, self).__init__(*args, **kwargs)
-        if queryset:
-            self.fields['eval'].queryset = queryset
+    pass
