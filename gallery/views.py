@@ -12,41 +12,54 @@ class top(TemplateView):
     print("頑張れー！")
 
     def get(self, request):
-        print("いまtoppageです")
         context = {
-                'selecte_form': self.select_form_class(),
+                'select_form': self.select_form_class(),
                 }
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
-        print("いまtoppageです")
         
-        ### 選ばれた色をリストとして取り出す ###
-        selected_color_id_list = self.request.POST.getlist("color")
+        ### posted selectform ###
+        if 'select' in self.request.POST: 
+            ### 選ばれた色をリストとして取り出す ###
+            selected_color_id_list = self.request.POST.getlist("color")
 
-        ### 選ばれたカテゴリをリストとして取り出す ###
-        selected_category_id_list = self.request.POST.getlist("category")
+            ### 選ばれたカテゴリをリストとして取り出す ###
+            selected_category_id_list = self.request.POST.getlist("category")
 
-        ### Websiteオブジェクトにフィルターかける ###
-        if selected_color_id_list == []:
-            if selected_category_id_list == []:
-                filter1 = Website.objects.all()
+            ### Websiteオブジェクトにフィルターかける ###
+            if selected_color_id_list == []:
+                if selected_category_id_list == []:
+                    filter1 = Website.objects.all()
+                else:
+                    filter1 = Website.objects.filter(category__in = selected_category_id_list)
             else:
-                filter1 = Website.objects.filter(category__in = selected_category_id_list)
-        else:
-            if selected_category_id_list == []:
-                filter1 = Website.objects.filter(color__in = selected_color_id_list)
-            else:
-                filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
+                if selected_category_id_list == []:
+                    filter1 = Website.objects.filter(color__in = selected_color_id_list)
+                else:
+                    filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
 
-        context = {
-            'eval_form' : self.eval_form_class(queryset=filter1),
-            'siteinfs' : filter1,
-        }
+            context = {
+                'eval_form' : self.eval_form_class(queryset=filter1),
+                'siteinfs' : filter1,
+            }
 
-        ### 表示順と表示数は最悪無くてもいいから後回しでいいよ ###
-    
-        return render(request, 'gallery/evaluation.html', context)
+            ### 表示順と表示数は最悪無くてもいいから後回しでいいよ ###
+        
+            return render(request, 'gallery/evaluation.html', context)
+        
+        ### posted evalform ###
+        if 'eval' in self.request.POST:
+            ### なぜかリストの最後に '' が入っているからそれを除く ###
+            eval_list = []
+            for a in (self.request.POST.getlist("eval")):
+                if a != '':
+                    eval_list.append(a)
+            eval_result = Website.objects.filter(id__in = eval_list)
+            context = {
+                'selected_siteinfs' : eval_result
+            }
+            return render(request, 'gallery/result.html', context)  
 
 
 

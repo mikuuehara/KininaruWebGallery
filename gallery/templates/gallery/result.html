@@ -8,20 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-type" charset="utf-8">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
   <!--
-  <link rel="stylesheet" type="text/css" href="{% static 'css/evaluation.css' %}">
   <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
   -->
 </head>
+
 <body>
   <h1>結果</h1>
-  
-    {{ eval_form.as_p }}
-    {% for siteinf in siteinfs %}
-    <img src="{{ siteinf.img_pc.url }}"/>
-    {% endfor %}
+  {% for selected_siteinf in selected_siteinfs %}
+  <a href="{{ selected_siteinf.url }}">
+    <img src="{{ selected_siteinf.img_pc.url }}" />
+  </a>
+  {{ siteinf.name }}
+  {% endfor %}
 
 
- 
+
 </body>
+
 </html>

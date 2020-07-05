@@ -71,6 +71,7 @@ class EvalForm(forms.Form):
     eval = forms.ModelMultipleChoiceField(
         label='評価', 
         queryset=Website.objects.all(),
+        required=False,
         widget=CustomCheckboxSelectMultiple2
         #widget=forms.CheckboxSelectMultiple
         )
