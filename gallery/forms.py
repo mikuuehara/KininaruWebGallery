@@ -1,5 +1,5 @@
 from django import forms
-#from . import models
+from gallery.widgets import CustomCheckboxSelectMultiple
 from gallery.models import Sitecategory, Sitecolor, Website
 
 ### 表示数の選択肢 ###
@@ -41,14 +41,16 @@ class SelectForm(forms.Form):
         label="カテゴリ",
         queryset=Sitecategory.objects.all(), 
         required=False,
-        widget=forms.CheckboxSelectMultiple
+        widget=CustomCheckboxSelectMultiple
+        #widget=forms.CheckboxSelectMultiple
         )
     
     color = forms.ModelMultipleChoiceField(
         label="色",
         queryset=Sitecolor.objects.all(),
         required=False,
-        widget=forms.CheckboxSelectMultiple
+        widget=CustomCheckboxSelectMultiple
+        #widget=forms.CheckboxSelectMultiple
     )
     
     num = forms.ChoiceField(

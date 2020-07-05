@@ -10,19 +10,21 @@ class top(TemplateView):
     eval_form_class = EvalForm
     template_name ='gallery/top.html'
     print("頑張れー！")
-    print("いまtoppageです")
 
     def get(self, request):
+        print("いまtoppageです")
         context = {
                 'selecte_form': self.select_form_class(),
                 }
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
+        print("いまtoppageです")
         ### 選ばれた色を取り出してリストに変換 ###
         selected_color_id_list = []
         for a in (self.request.POST.getlist("color")):
             selected_color_id_list.append(int(a))
+        print(selected_color_id_list)
 
         ### 選ばれたカテゴリを取り出してリストに変換 ###
         selected_category_id_list = []
@@ -30,14 +32,23 @@ class top(TemplateView):
             selected_category_id_list.append(int(b))
 
         ### Websiteオブジェクトにフィルターかける ###
-        filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
+        if selected_color_id_list == []:
+            if selected_category_id_list == []:
+                filter1 = Website.objects.all()
+            else:
+                filter1 = Website.objects.filter(category__in = selected_category_id_list)
+        else:
+            if selected_category_id_list == []:
+                filter1 = Website.objects.filter(color__in = selected_color_id_list)
+            else:
+                filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
 
         context = {
             'eval_form' : self.eval_form_class(queryset=filter1),
             'siteinfs' : filter1,
         }
 
-        ### 表示順と表示数は最悪無くてもいいから後回しにしましょう ###
+        ### 表示順と表示数は最悪無くてもいいから後回しでいいよ ###
     
         return render(request, 'gallery/evaluation.html', context)
 
@@ -46,8 +57,9 @@ class top(TemplateView):
 
 class evaluation(TemplateView):
     #template_name = 'gallery/evaluation.html'
-    print("いまevaluationページです")
+    
     def post(self, request):
+        print("いまevaluationページです")
         print(self.request.POST.getlist("eval"))
         context = {
             'siteinfs' : self.request.POST.getlist("eval")
