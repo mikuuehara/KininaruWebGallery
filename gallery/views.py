@@ -20,16 +20,12 @@ class top(TemplateView):
 
     def post(self, request):
         print("いまtoppageです")
-        ### 選ばれた色を取り出してリストに変換 ###
-        selected_color_id_list = []
-        for a in (self.request.POST.getlist("color")):
-            selected_color_id_list.append(int(a))
-        print(selected_color_id_list)
+        
+        ### 選ばれた色をリストとして取り出す ###
+        selected_color_id_list = self.request.POST.getlist("color")
 
-        ### 選ばれたカテゴリを取り出してリストに変換 ###
-        selected_category_id_list = []
-        for b in (self.request.POST.getlist("category")):
-            selected_category_id_list.append(int(b))
+        ### 選ばれたカテゴリをリストとして取り出す ###
+        selected_category_id_list = self.request.POST.getlist("category")
 
         ### Websiteオブジェクトにフィルターかける ###
         if selected_color_id_list == []:
@@ -56,7 +52,7 @@ class top(TemplateView):
 
 
 class evaluation(TemplateView):
-    #template_name = 'gallery/evaluation.html'
+    template_name = 'gallery/evaluation.html'
     
     def post(self, request):
         print("いまevaluationページです")
