@@ -1,5 +1,5 @@
 from django import forms
-from gallery.widgets import CustomCheckboxSelectMultiple
+from gallery.widgets import CustomCheckboxSelectMultiple, CustomCheckboxSelectMultiple2
 from gallery.models import Sitecategory, Sitecolor, Website
 
 ### 表示数の選択肢 ###
@@ -71,7 +71,8 @@ class EvalForm(forms.Form):
     eval = forms.ModelMultipleChoiceField(
         label='評価', 
         queryset=Website.objects.all(),
-        widget=forms.CheckboxSelectMultiple
+        widget=CustomCheckboxSelectMultiple2
+        #widget=forms.CheckboxSelectMultiple
         )
     ### querysetを動的に変更 ###
     def __init__(self, queryset=None, *args, **kwargs):
