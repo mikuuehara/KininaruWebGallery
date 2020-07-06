@@ -9,21 +9,32 @@
   <meta http-equiv="content-type" charset="utf-8">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/evaluation.css' %}">
-  <!--
-  <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
-  -->
+  <script type="text/javascript" src="{% static 'js/evaluation.js' %}"></script>
 </head>
+
 <body>
-  <h1>評価</h1>
+
   <form action="" method="POST">
+
     {% csrf_token %}
-    {{ eval_form.as_p }}
     {% for siteinf in siteinfs %}
-    <img src="{{ siteinf.img_pc.url }}"/>
+
+    <div class="one_form {{ siteinf.id }}">
+      <div class="eval_block">
+        <img src="{{ siteinf.img_sm.url }}" />
+      </div>
+
+      <div class="good_bad">
+        <input type="radio" value="good" class="{{ siteinf.id }}" name="{{ siteinf.id }}" required>Good
+        <input type="radio" value="bad" class="{{ siteinf.id }}" name="{{ siteinf.id }}">Bad
+      </div>
+    </div>
+
     {% endfor %}
-    <button type="submit" name="eval">登録</button>
-</form>
-  
- 
+
+    <button type="submit" name="eval" id="submit_btn">登録</button>
+  </form>
+
 </body>
+
 </html>

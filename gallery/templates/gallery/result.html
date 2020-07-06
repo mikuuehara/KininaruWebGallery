@@ -15,12 +15,20 @@
 </head>
 
 <body>
-  <h1>結果</h1>
-  {% for selected_siteinf in selected_siteinfs %}
-  <a href="{{ selected_siteinf.url }}">
-    <img src="{{ selected_siteinf.img_pc.url }}" />
+  <h1>いいねしたサイト</h1>
+  {% for good_siteinf in good_siteinfs %}
+  <a href="{{ good_siteinf.url }}">
+    <img src="{{ good_siteinf.img_sm.url }}" />
   </a>
-  {{ siteinf.name }}
+  {{ good_siteinf.name }}
+  {% endfor %}
+
+  <h1>よくないねしたサイト</h1>
+  {% for bad_siteinf in bad_siteinfs %}
+  <a href="{{ bad_siteinf.url }}">
+    <img src="{{ bad_siteinf.img_sm.url }}" />
+  </a>
+  {{ bad_siteinf.name }}
   {% endfor %}
 
 

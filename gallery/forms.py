@@ -1,5 +1,5 @@
 from django import forms
-from gallery.widgets import CustomCheckboxSelectMultiple, CustomCheckboxSelectMultiple2
+from gallery.widgets import CustomCheckboxSelectMultiple
 from gallery.models import Sitecategory, Sitecolor, Website
 
 ### 表示数の選択肢 ###
@@ -65,9 +65,3 @@ class SelectForm(forms.Form):
         choices=turn_choicies,
         required=True
     )
-
-
-### 表示されたサイトを評価 ###
-
-class EvalForm(forms.Form):
-    pass

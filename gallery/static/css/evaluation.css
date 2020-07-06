@@ -1,3 +1,35 @@
+html{
+    margin: 0;
+    text-align: center;
+}
+
 img {
-    width: 100%;
+    width: 85%;
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+.one_form{
+    text-align: center;
+    position: absolute;
+    right: 0;
+}
+
+.eval_block  img{
+    position: relative;
+
+}
+
+.good_bad{
+    text-align: center;
+}
+
+#submit_btn{
+    position: absolute;
+    width: 20%;
+    right: 40%;
+    bottom: 3%;
 }

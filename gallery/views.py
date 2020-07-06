@@ -1,16 +1,14 @@
 from django.shortcuts import render, redirect
 from django import forms
 from gallery.models import Sitecategory, Sitecolor, Website
-from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm, EvalForm
+from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm
 from django.views.generic import TemplateView
-from gallery.widgets import CustomCheckboxSelectMultiple, CustomCheckboxSelectMultiple2
 
 
 
 ### top page ###
 class top(TemplateView):
     select_form_class = SelectForm
-    eval_form_class = EvalForm
     template_name ='gallery/top.html'
   
     print("頑張れー！")
@@ -23,10 +21,10 @@ class top(TemplateView):
 
     def post(self, request):
         select_form = self.select_form_class(request.POST)
-        eval_form = self.eval_form_class(request.POST)
+        #eval_form = self.eval_form_class(request.POST)
         context = self.get_context_data(
             select_form=select_form,
-            eval_form=eval_form
+            #eval_form=eval_form
             )
 
         ### 未選択のオブジェクトが取得できそうに無かったのでformを変えてみる ###
@@ -52,7 +50,7 @@ class top(TemplateView):
 
                 ### 表示数を設定 ###
                 selected_num = int(self.request.POST.get("num"))
-                
+
                 ### 表示順を設定 ###
                 if self.request.POST.get("turn") == "new":
                     filter2 = filter1.order_by('add_date')[:selected_num]
@@ -60,44 +58,28 @@ class top(TemplateView):
                     filter2 = filter1.order_by('-add_date')[:selected_num]
                 else:
                     filter2 = filter1.order_by('?')[:selected_num]
-
-                selected_site_list = filter2.values_list('name', flat=True)
-                
-
-                ### formにフィールドを追加 ###
-                good_bad = (
-                    ('good', 'good'),
-                    ('bad', 'bad')
-                )
-                print(list(selected_site_list))
-                eval_form = forms.Form()
-                for selected_site_name in list(selected_site_list): 
-                    eval_form.fields[selected_site_name] = forms.ChoiceField(
-                        choices = good_bad,
-                        required=True,
-                        widget=CustomCheckboxSelectMultiple2
-                    )
-
+                     
                 context = {
-                    'eval_form' : eval_form,
-                    'siteinfs' : filter2,
+                    'siteinfs' : filter2
                 }
                 return render(request, 'gallery/evaluation.html', context)
         
         ### posted evalform ###
         if 'eval' in self.request.POST:
-            if eval_form.is_valid():
-                ### なぜかリストの最後に '' が入っているからそれを除く ###
-                #eval_list = []
-                #for a in (self.request.POST.getlist("eval")):
-                #    if a != '':
-                #        eval_list.append(a)
-                #eval_result = Website.objects.filter(id__in = eval_list)
-                #context = {
-                #    'selected_siteinfs' : eval_result
-                #}
-                print(self.request.POST)
-                return render(request, 'gallery/result.html')  
+            ### goodとbadのサイトidをそれぞれリストにする ###
+            qery_direct = self.request.POST
+            good_site_id_list = [k for k, v in qery_direct.items() if v == 'good']
+            bad_site_id_list = [k for k, v in qery_direct.items() if v == 'bad']
+
+    
+            print(good_site_id_list)
+            good_siteinfs = Website.objects.filter(id__in = good_site_id_list)
+            bad_siteinfs = Website.objects.filter(id__in = bad_site_id_list)
+            context={
+                'good_siteinfs' : good_siteinfs,
+                'bad_siteinfs' : bad_siteinfs,
+            }
+            return render(request, 'gallery/result.html', context)  
 
         return render(self.request, 'gallery/evaluation.html', context)
 
