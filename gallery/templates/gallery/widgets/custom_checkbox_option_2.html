@@ -1,9 +1,17 @@
+<!--
 {% include "django/forms/widgets/input.html" %}
+-->
+<div>
 
-<label for="{{ widget.attrs.id }}" class="custom-checkbox-label">
-    {{ widget.label }}
-    <!--
+    <input type="{{ widget.type }}" name="{{ widget.name }}" {% if widget.value != None %}
+        value="{{ widget.value|stringformat:'s' }}" {% endif %} {% include "django/forms/widgets/attrs.html" %}>
+
+    <label for="{{ widget.attrs.id }}" class="custom-checkbox-label">
+        {{ widget.label }}
+        <!--
     使えるかも？
     {{ widget.name }}
     -->
-</label>
+    </label>
+
+</div>

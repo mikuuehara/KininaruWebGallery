@@ -12,6 +12,7 @@ class top(TemplateView):
     select_form_class = SelectForm
     eval_form_class = EvalForm
     template_name ='gallery/top.html'
+  
     print("頑張れー！")
 
     def get(self, request):
@@ -21,74 +22,90 @@ class top(TemplateView):
         return render(request, 'gallery/top.html', context)
 
     def post(self, request):
-        ### 未選択のオブジェクトが取得できそうに無かったのでformを変えてみる ###
-        if 'select' in self.request.POST: 
-            ### 選ばれた色をリストとして取り出す ###
-            selected_color_id_list = self.request.POST.getlist("color")
-
-            ### 選ばれたカテゴリをリストとして取り出す ###
-            selected_category_id_list = self.request.POST.getlist("category")
-
-            ### Websiteオブジェクトにフィルターかける ###
-            if selected_color_id_list == []:
-                if selected_category_id_list == []:
-                    filter1 = Website.objects.all()
-                else:
-                    filter1 = Website.objects.filter(category__in = selected_category_id_list)
-            else:
-                if selected_category_id_list == []:
-                    filter1 = Website.objects.filter(color__in = selected_color_id_list)
-                else:
-                    filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
-
-            selected_site_list = filter1.values_list('name', flat=True)
-            ### formにフィールドを追加 ###
-            good_bad = (
-                ('good', 'good'),
-                ('bad', 'bad')
+        select_form = self.select_form_class(request.POST)
+        eval_form = self.eval_form_class(request.POST)
+        context = self.get_context_data(
+            select_form=select_form,
+            eval_form=eval_form
             )
-            eval_form = forms.Form()
-            for selected_site_name in list(selected_site_list): 
-                eval_form.fields[selected_site_name] = forms.ChoiceField(
-                    choices = good_bad,
-                    required=True,
-                    widget=CustomCheckboxSelectMultiple2
-                )
 
-            context = {
-                'eval_form' : eval_form,
-                'siteinfs' : filter1,
-            }
-            return render(request, 'gallery/evaluation.html', context)
+        ### 未選択のオブジェクトが取得できそうに無かったのでformを変えてみる ###
+        if 'select' in self.request.POST:
+             if select_form.is_valid():
+                ### 選ばれた色をリストとして取り出す ###
+                selected_color_id_list = self.request.POST.getlist("color")
+
+                ### 選ばれたカテゴリをリストとして取り出す ###
+                selected_category_id_list = self.request.POST.getlist("category")
+
+                ### Websiteオブジェクトにフィルターかける ###
+                if selected_color_id_list == []:
+                    if selected_category_id_list == []:
+                        filter1 = Website.objects.all()
+                    else:
+                        filter1 = Website.objects.filter(category__in = selected_category_id_list)
+                else:
+                    if selected_category_id_list == []:
+                        filter1 = Website.objects.filter(color__in = selected_color_id_list)
+                    else:
+                        filter1 = Website.objects.filter(color__in = selected_color_id_list, category__in = selected_category_id_list)
+
+                ### 表示数を設定 ###
+                selected_num = int(self.request.POST.get("num"))
+                
+                ### 表示順を設定 ###
+                if self.request.POST.get("turn") == "new":
+                    filter2 = filter1.order_by('add_date')[:selected_num]
+                elif self.request.POST.get("turn") == "old":
+                    filter2 = filter1.order_by('-add_date')[:selected_num]
+                else:
+                    filter2 = filter1.order_by('?')[:selected_num]
+
+                selected_site_list = filter2.values_list('name', flat=True)
+                
+
+                ### formにフィールドを追加 ###
+                good_bad = (
+                    ('good', 'good'),
+                    ('bad', 'bad')
+                )
+                print(list(selected_site_list))
+                eval_form = forms.Form()
+                for selected_site_name in list(selected_site_list): 
+                    eval_form.fields[selected_site_name] = forms.ChoiceField(
+                        choices = good_bad,
+                        required=True,
+                        widget=CustomCheckboxSelectMultiple2
+                    )
+
+                context = {
+                    'eval_form' : eval_form,
+                    'siteinfs' : filter2,
+                }
+                return render(request, 'gallery/evaluation.html', context)
         
         ### posted evalform ###
         if 'eval' in self.request.POST:
-            ### なぜかリストの最後に '' が入っているからそれを除く ###
-            #eval_list = []
-            #for a in (self.request.POST.getlist("eval")):
-            #    if a != '':
-            #        eval_list.append(a)
-            #eval_result = Website.objects.filter(id__in = eval_list)
-            #context = {
-            #    'selected_siteinfs' : eval_result
-            #}
+            if eval_form.is_valid():
+                ### なぜかリストの最後に '' が入っているからそれを除く ###
+                #eval_list = []
+                #for a in (self.request.POST.getlist("eval")):
+                #    if a != '':
+                #        eval_list.append(a)
+                #eval_result = Website.objects.filter(id__in = eval_list)
+                #context = {
+                #    'selected_siteinfs' : eval_result
+                #}
+                print(self.request.POST)
+                return render(request, 'gallery/result.html')  
 
-            print(self.request.POST)
-            return render(request, 'gallery/result.html')  
-
-
+        return render(self.request, 'gallery/evaluation.html', context)
 
 
 class evaluation(TemplateView):
     template_name = 'gallery/evaluation.html'
     
-    def post(self, request):
-        print("いまevaluationページです")
-        print(self.request.POST.getlist("eval"))
-        context = {
-            'siteinfs' : self.request.POST.getlist("eval")
-        }
-        return render(request, 'gallery/result.html', context)  
+      
 
 
 class result(TemplateView):
@@ -122,9 +139,10 @@ class register(TemplateView):
         color_form = self.color_form_class(request.POST)
         category_form = self.category_form_class(request.POST)
         siteinf_form = self.siteinf_form_class(request.POST, request.FILES or None)
-        context = self.get_context_data(color_form=color_form,
-                                        category_form=category_form,
-                                        siteinf_form=siteinf_form)
+        context = self.get_context_data(
+            color_form=color_form,
+            category_form=category_form,
+            siteinf_form=siteinf_form)
 
         ### posted website information ###
         if 'siteinf' in self.request.POST:

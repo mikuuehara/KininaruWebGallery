@@ -10,6 +10,7 @@ num_choicies = (
 ### 表示順の選択肢 ###
 turn_choicies = (
     ('new', 'new'),
+    ('old', 'old'),
     ('random', 'random'),
 )
 
