@@ -1,11 +1,15 @@
+
 $(function () {
-    $(".2").change(function () {
-        console.log("bbb")
-        $('input:checked').each(function () {
-            $(".2").css('display','none');
+    let num = 1;
+    $(".one_form").change(function () {  
+        var i = $(this).attr('id');  
+        console.log(i);
+        $(this).delay(300).fadeOut();
 
-            console.log("aaa");
-        })
-
+        if(i == 1){
+            $("#submit_btn").delay(600).css('display','inline-block');
+        }
     })
+
 })
+//$('.now_num').text();

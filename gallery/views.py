@@ -50,17 +50,21 @@ class top(TemplateView):
 
                 ### 表示数を設定 ###
                 selected_num = int(self.request.POST.get("num"))
-
+                
                 ### 表示順を設定 ###
+                ### 表示順が遅い方が上になるので、newとoldを逆にする ###
                 if self.request.POST.get("turn") == "new":
-                    filter2 = filter1.order_by('add_date')[:selected_num]
-                elif self.request.POST.get("turn") == "old":
                     filter2 = filter1.order_by('-add_date')[:selected_num]
+                elif self.request.POST.get("turn") == "old":
+                    filter2 = filter1.order_by('add_date')[:selected_num]
                 else:
                     filter2 = filter1.order_by('?')[:selected_num]
                      
+                print(filter2.count())
+                show_num = filter2.count()
                 context = {
-                    'siteinfs' : filter2
+                    'siteinfs' : filter2,
+                    'show_num' : show_num
                 }
                 return render(request, 'gallery/evaluation.html', context)
         

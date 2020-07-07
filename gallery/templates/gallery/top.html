@@ -1,24 +1,54 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <meta http-equiv="content-type" charset="utf-8">
 <html>
 
 <head>
-  <title>Webデザインギャラリーサイト</title>
+  <title>Webデザインギャラリーサイト キニナル</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-type" charset="utf-8">
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <form method="POST">
-    <h1>天才だ～！</h1>
-    {% csrf_token %}
-    {{ select_form.as_p }}
-    <button type="submit" name="select">START</button>
-  </form>
+  <header>
+    <div class="header">KININARU Web Gallery</div>
+  </header>
+  <div class="block1">
+    <p class="explanation">
+      KININARU Web Galleryは<br>
+      あなたが"気になる"と思うWebサイトを見つけるサイトです<br>
+      カテゴリや色を選んではじめましょう
+    </p>
+    <form method="POST">
+      {% csrf_token %}
+
+      <h1>カテゴリ</h1>
+      <div class="form_ele category">
+        {{ select_form.category|add_class:'form-control' }}
+      </div>
+      <div class="form_ele color">
+        <h1>色</h1>
+        {{ select_form.color|add_class:'form-control' }}
+      </div>
+      <div class="form_ele num">
+        <h1>表示数</h1>
+        {{ select_form.num|add_class:'form-control' }}
+      </div>
+      <div class="form_ele turn">
+        <h1>表示順</h1>
+        {{ select_form.turn|add_class:'form-control' }}
+      </div>
+
+      <button type="submit" name="select" class="select_btn">START</button>
+    </form>
+  </div>
 
 </body>
+
 </html>

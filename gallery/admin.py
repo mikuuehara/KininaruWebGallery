@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import Website
-from gallery.forms import SiteinfForm
+from gallery.models import Sitecategory, Sitecolor, Website
+from gallery.forms import ColorForm, CategoryForm, SiteinfForm, SelectForm
 
 # Register your models here.
+admin.site.register(Website)
+admin.site.register(Sitecategory)
+admin.site.register(Sitecolor)
 
 class SiteinfFormAdmin(admin.ModelAdmin):
     readonly_fields=('img_pc','img_sm',)

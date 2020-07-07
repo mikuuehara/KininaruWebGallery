@@ -4,6 +4,7 @@ from gallery.models import Sitecategory, Sitecolor, Website
 
 ### 表示数の選択肢 ###
 num_choicies = (
+    (5, 5),
     (10, 10), 
     (20, 20),
     )
@@ -39,15 +40,15 @@ class SiteinfForm(forms.ModelForm):
 ### 表示するサイトを選択 ###
 class SelectForm(forms.Form):
     category = forms.ModelMultipleChoiceField(
-        label="カテゴリ",
+        label="",
         queryset=Sitecategory.objects.all(), 
         required=False,
-        widget=CustomCheckboxSelectMultiple
+        widget=CustomCheckboxSelectMultiple,
         #widget=forms.CheckboxSelectMultiple
         )
     
     color = forms.ModelMultipleChoiceField(
-        label="色",
+        label="",
         queryset=Sitecolor.objects.all(),
         required=False,
         widget=CustomCheckboxSelectMultiple
@@ -55,13 +56,13 @@ class SelectForm(forms.Form):
     )
     
     num = forms.ChoiceField(
-        label='表示数',
+        label='',
         choices=num_choicies,
         required=True
     )
 
     turn = forms.ChoiceField(
-        label='表示順',
+        label='',
         choices=turn_choicies,
         required=True
     )

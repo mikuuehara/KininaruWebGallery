@@ -10,29 +10,41 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/evaluation.css' %}">
   <script type="text/javascript" src="{% static 'js/evaluation.js' %}"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 
 <body>
+  <header>
+    <span class="now_num">1</span>/{{show_num}}
+  </header>
 
   <form action="" method="POST">
 
     {% csrf_token %}
     {% for siteinf in siteinfs %}
 
-    <div class="one_form {{ siteinf.id }}">
+    <div class="one_form" id="{{forloop.counter}}">
+      <span class="site_name">{{ siteinf.name }}</span>
       <div class="eval_block">
         <img src="{{ siteinf.img_sm.url }}" />
       </div>
 
-      <div class="good_bad">
-        <input type="radio" value="good" class="{{ siteinf.id }}" name="{{ siteinf.id }}" required>Good
-        <input type="radio" value="bad" class="{{ siteinf.id }}" name="{{ siteinf.id }}">Bad
-      </div>
+      <fieldset class="good_bad">
+        
+        <input type="radio" value="good" id="g_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}" required>
+        <label class="good_inline_label" for="g_id_{{ siteinf.id }}">
+        </label>
+        <input type="radio" value="bad" id="b_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}">
+        <label class="bad_inline_label" for="b_id_{{ siteinf.id }}">
+        </label>
+      </fieldset>
     </div>
 
     {% endfor %}
 
-    <button type="submit" name="eval" id="submit_btn">登録</button>
+    <button type="submit" name="eval" id="submit_btn">結果を表示</button>
   </form>
 
 </body>

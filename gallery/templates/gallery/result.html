@@ -15,22 +15,38 @@
 </head>
 
 <body>
-  <h1>いいねしたサイト</h1>
+  <header>
+    <div class="header">KININARU Web Gallery</div>
+  </header>
+
+  <div class="block1">
+  <h1>気になるサイト</h1>
   {% for good_siteinf in good_siteinfs %}
-  <a href="{{ good_siteinf.url }}">
-    <img src="{{ good_siteinf.img_sm.url }}" />
-  </a>
-  {{ good_siteinf.name }}
+  <div class="site_block">
+    <a href="{{ good_siteinf.url }}">
+      <img src="{{ good_siteinf.img_sm.url }}" />
+    </a>
+    <p>
+      <a href="{{ good_siteinf.url }}">
+        {{ good_siteinf.name }}
+      </a>
+    </p>
+  </div>
   {% endfor %}
 
-  <h1>よくないねしたサイト</h1>
+
+  <h1>気にならないサイト</h1>
   {% for bad_siteinf in bad_siteinfs %}
-  <a href="{{ bad_siteinf.url }}">
-    <img src="{{ bad_siteinf.img_sm.url }}" />
-  </a>
-  {{ bad_siteinf.name }}
+  <div class="site_block">
+    <a href="{{ bad_siteinf.url }}">
+      <img src="{{ bad_siteinf.img_sm.url }}" />
+    </a>
+    {{ bad_siteinf.name }}
+  </div>
   {% endfor %}
 
+  <a class="to_top" href="{% url 'top' %}">最初から</a>
+</div>
 
 
 </body>
