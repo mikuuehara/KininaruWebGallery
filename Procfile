@@ -1,0 +1,1 @@
+web: gunicorn kininaru-web-gallery.wsgi --log-file -
