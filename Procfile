@@ -1,1 +1,1 @@
-web: gunicorn gallery.wsgi --log-gile - 
+web: gunicorn config.wsgi --log-gile - 
