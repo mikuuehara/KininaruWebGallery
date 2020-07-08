@@ -12,41 +12,48 @@
   <!--
   <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
   -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <header>
-    <div class="header">KININARU Web Gallery</div>
+    <div class="inline_header">
+      KININARU Web Gallery
+    </div>
   </header>
 
   <div class="block1">
-  <h1>気になるサイト</h1>
-  {% for good_siteinf in good_siteinfs %}
-  <div class="site_block">
-    <a href="{{ good_siteinf.url }}">
-      <img src="{{ good_siteinf.img_sm.url }}" />
-    </a>
-    <p>
+    <h1 class="good_h1">気になるサイト</h1>
+    {% for good_siteinf in good_siteinfs %}
+    <div class="site_block good">
       <a href="{{ good_siteinf.url }}">
-        {{ good_siteinf.name }}
+        <img src="{{ good_siteinf.img_sm.url }}" />
       </a>
-    </p>
+      <p>
+        <a href="{{ good_siteinf.url }}">
+          {{ good_siteinf.name }}
+        </a>
+      </p>
+    </div>
+    {% endfor %}
+
+
+    <h1 class="bad_h1">気にならないサイト</h1>
+    {% for bad_siteinf in bad_siteinfs %}
+    <div class="site_block bad">
+      <a href="{{ bad_siteinf.url }}">
+        <img src="{{ bad_siteinf.img_sm.url }}" />
+      </a>
+      <p>
+        <a href="{{ bad_siteinf.url }}">
+          {{ bad_siteinf.name }}
+        </a>
+      </p>
+    </div>
+    {% endfor %}
+
+    <a class="to_top" href="{% url 'top' %}">最初から</a>
   </div>
-  {% endfor %}
-
-
-  <h1>気にならないサイト</h1>
-  {% for bad_siteinf in bad_siteinfs %}
-  <div class="site_block">
-    <a href="{{ bad_siteinf.url }}">
-      <img src="{{ bad_siteinf.img_sm.url }}" />
-    </a>
-    {{ bad_siteinf.name }}
-  </div>
-  {% endfor %}
-
-  <a class="to_top" href="{% url 'top' %}">最初から</a>
-</div>
 
 
 </body>

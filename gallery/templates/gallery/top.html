@@ -13,37 +13,43 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/top.css' %}">
 
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
-  </head>
+</head>
 
 <body>
   <header>
-    <div class="header">KININARU Web Gallery</div>
+    <div class="inline_header">
+      KININARU Web Gallery
+    </div>
   </header>
   <div class="block1">
+    <hr>
     <p class="explanation">
       KININARU Web Galleryは<br>
-      あなたが"気になる"と思うWebサイトを見つけるサイトです<br>
+      あなたが"気になる"と思うWebサイトを見つける<br>
+      スマートフォン向けデザインギャラリーサイトです<br>
       カテゴリや色を選んではじめましょう
     </p>
+    <hr>
     <form method="POST">
       {% csrf_token %}
 
-      <h1>カテゴリ</h1>
+      <h1>カテゴリ<span class="mini">複数選択可</span></h1>
       <div class="form_ele category">
         {{ select_form.category|add_class:'form-control' }}
       </div>
       <div class="form_ele color">
-        <h1>色</h1>
+        <h1>色<span class="mini">複数選択可</span></h1>
         {{ select_form.color|add_class:'form-control' }}
       </div>
       <div class="form_ele num">
         <h1>表示数</h1>
-        {{ select_form.num|add_class:'form-control' }}
+        {{ select_form.num|add_class:'sel' }}
       </div>
       <div class="form_ele turn">
         <h1>表示順</h1>
-        {{ select_form.turn|add_class:'form-control' }}
+        {{ select_form.turn|add_class:'sel' }}
       </div>
+
 
       <button type="submit" name="select" class="select_btn">START</button>
     </form>

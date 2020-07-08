@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #fcfaf4;
     margin: 0;
     height: 100%;
@@ -6,13 +6,13 @@ body{
     font-family: 'Noto Sans JP', sans-serif;
 }
 
-header{
+header {
     text-align: center;
     background-color: #D6CEAF;
     height: 7vh;
 }
 
-.header{
+.inline_header {
     display: inline-block;
     position: relative;
     font-size: 3vh;
@@ -20,29 +20,45 @@ header{
     vertical-align: middle;
 }
 
-.block1{
-    margin: 5%;
+.block1 {
+    margin: 3% 5%;
+    width: 90%;
+    display: inline-block;
 }
 
-.explanation{
+hr {
+    border-top: 1px solid #D6CEAF;
+    border-bottom: 1px solid #fff;
+}
+
+.explanation {
     font-weight: normal;
-    font-size: 1.7vh;
+    font-size: 3.5vw;
     line-height: 1.5;
     text-align: center;
+    margin: 3vh 0 3vh 0;
 }
 
 
-form{
+form {
     text-align: center;
+    margin-top: 3vh;
 }
 
-h1{
+h1 {
     text-align: left;
     font-weight: normal;
     font-size: 3vh;
+    margin-bottom: 0.4em;
 }
 
-.form_ele{
+.mini {
+    font-size: 1.6vh;
+    margin: 0 3vh;
+    color: #636660;
+}
+
+.form_ele {
     text-align: left;
 }
 
@@ -50,7 +66,7 @@ h1{
     display: none;
 }
 
-.custom-checkbox:checked + .custom-checkbox-label {
+.custom-checkbox:checked+.custom-checkbox-label {
     background: #D6CEAF;
 }
 
@@ -79,9 +95,28 @@ h1{
 }
 */
 
-.select_btn{
-    display: inline-block;
-    margin-top: 5vh;
+.sel {
+    border: none;
+    width: 20vh;
+    background-color: #fcfaf4;
+    border-bottom: solid 1px #D6CEAF;
+    padding: 0.5em;
+}
+
+.sel option {
+    padding: 1em;
+}
+
+.rule {
+
+    margin: 0;
+    width: 100%;
+}
+
+.select_btn {
+    display: block;
+    width: 50vw;
+    margin: 6vh auto 7vh auto;
     padding: 0.3em 1em;
     font-size: 3vh;
     text-decoration: none;
@@ -90,4 +125,53 @@ h1{
     border: solid 2px #D6CEAF;
     border-radius: 3px;
     transition: .4s;
-  }
+}
+
+
+
+@media screen and (min-height: 800px) {
+    /* 高さ800px以上に適用されるCSS（iphoneX用） */
+
+
+}
+
+@media screen and (min-width: 480px) {
+    /* 幅960px以上に適用されるCSS（PC半画面用） */
+
+    .explanation {
+        font-weight: normal;
+        font-size: 2vh;
+        line-height: 1.5;
+        text-align: center;
+        margin: 6vh 0 7vh 0;
+    }
+}
+
+@media screen and (min-width: 960px) {
+
+    /* 幅960px以上に適用されるCSS（PC全画面用） */
+    .block1 {
+        margin: 3% 10%;
+        width: 80%;
+    }
+
+    form {
+        width: 70%;
+        margin: auto;
+    }
+
+    .select_btn {
+        display: block;
+        width: 30vw;
+        margin: 7vh auto 7vh auto;
+        padding: 0.3em 1em;
+        font-size: 3vh;
+        text-decoration: none;
+        color: #383A36;
+        background-color: #D6CEAF;
+        border: solid 2px #D6CEAF;
+        border-radius: 3px;
+        transition: .4s;
+    }
+
+}

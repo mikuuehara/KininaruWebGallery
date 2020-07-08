@@ -17,7 +17,9 @@
 
 <body>
   <header>
-    <span class="now_num" id="{{show_num}}">1</span>/{{show_num}}
+    <div class="inline_header">
+      <span class="now_num" id="{{show_num}}">1 </span><span class="slash">／</span> {{show_num}}
+    </div>
   </header>
 
   <form action="" method="POST">
@@ -32,8 +34,9 @@
       </div>
 
       <fieldset class="good_bad">
-        
-        <input type="radio" value="good" id="g_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}" required>
+
+        <input type="radio" value="good" id="g_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}"
+          required>
         <label class="good_inline_label" for="g_id_{{ siteinf.id }}">
         </label>
         <input type="radio" value="bad" id="b_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}">
