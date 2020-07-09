@@ -18,7 +18,9 @@
 <body>
   <header>
     <div class="inline_header">
-      KININARU Web Gallery
+      <a class="to_top" href="{% url 'top' %}">
+        <img src="{% static 'img/logo2.png' %}" alt="ロゴ"/>
+      </a>
     </div>
   </header>
   <div class="block1">
@@ -33,14 +35,7 @@
     <form method="POST">
       {% csrf_token %}
 
-      <h1>カテゴリ<span class="mini">複数選択可</span></h1>
-      <div class="form_ele category">
-        {{ select_form.category|add_class:'form-control' }}
-      </div>
-      <div class="form_ele color">
-        <h1>色<span class="mini">複数選択可</span></h1>
-        {{ select_form.color|add_class:'form-control' }}
-      </div>
+
       <div class="form_ele num">
         <h1>表示数</h1>
         {{ select_form.num|add_class:'sel' }}
@@ -48,6 +43,14 @@
       <div class="form_ele turn">
         <h1>表示順</h1>
         {{ select_form.turn|add_class:'sel' }}
+      </div>
+      <h1>カテゴリ<span class="mini">任意/複数選択可</span></h1>
+      <div class="form_ele category">
+        {{ select_form.category|add_class:'form-control' }}
+      </div>
+      <div class="form_ele color">
+        <h1>色<span class="mini">任意/複数選択可</span></h1>
+        {{ select_form.color|add_class:'form-control' }}
       </div>
 
 

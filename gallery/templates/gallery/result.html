@@ -18,7 +18,9 @@
 <body>
   <header>
     <div class="inline_header">
-      KININARU Web Gallery
+      <a href="{% url 'top' %}">
+        <img src="{% static 'img/logo2.png' %}" alt="ロゴ"/>
+      </a>
     </div>
   </header>
 
@@ -29,7 +31,7 @@
       <a href="{{ good_siteinf.url }}">
         <img src="{{ good_siteinf.img_sm.url }}" />
       </a>
-      <p>
+      <p class="name">
         <a href="{{ good_siteinf.url }}">
           {{ good_siteinf.name }}
         </a>
@@ -44,7 +46,7 @@
       <a href="{{ bad_siteinf.url }}">
         <img src="{{ bad_siteinf.img_sm.url }}" />
       </a>
-      <p>
+      <p class="name">
         <a href="{{ bad_siteinf.url }}">
           {{ bad_siteinf.name }}
         </a>

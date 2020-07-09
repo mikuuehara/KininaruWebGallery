@@ -6,7 +6,7 @@ from gallery.models import Sitecategory, Sitecolor, Website
 num_choicies = (
     (5, 5),
     (10, 10), 
-    (20, 20),
+    (15, 15),
     )
 ### 表示順の選択肢 ###
 turn_choicies = (

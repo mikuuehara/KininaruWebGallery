@@ -6,6 +6,10 @@ $(function () {
     let num = Number($(".now_num").attr('id'));
     let num2 = num - 2;
 
+    // 表示できるサイトが0だったとき
+    if(num == 0){
+        $(".site_none").css("display","inline-block");
+    }
 
     // 指が触れたらstart_checkを実行
     $(".one_form").on("touchstart", start_check);
@@ -138,10 +142,12 @@ $(function () {
     $(".one_form").change(function () {
         var i = $(this).attr('id');
 
-        $(this).delay(300).fadeOut();
+        $(this).delay(200).fadeOut();
 
         if (i == 1) {
-            $("#submit_btn").delay(600).css('display', 'inline-block');
+            setTimeout(function () {
+                $("#submit_btn").css('display', 'inline-block');
+            }, 1000);
         } else {
             $(".now_num").text(Number(num) - i + 2);
         }
