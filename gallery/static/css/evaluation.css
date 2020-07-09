@@ -7,7 +7,7 @@ body {
     background-color: #fcfaf4;
     color: #383A36;
     font-family: 'Noto Sans JP', sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 
@@ -23,6 +23,7 @@ header {
     position: relative;
     font-size: 3vh;
     font-weight: bold;
+    width: 100%;
     top: 1vh;
     vertical-align: middle;
 }
@@ -31,22 +32,26 @@ header {
     transform-origin: Top Left;
     transform: rotate(90deg);
     position: absolute;
+    top: -3vh;
     left: 6vw;
     height: 6vw;
-    width: 94vh;
+    width: 105vh;
     color: #fcfaf4;
     background-color: #475F77;
+    z-index: -1;
 }
 
 .kininaru_zone {
     transform-origin: Top right;
     transform: rotate(-90deg);
     position: absolute;
+    top: -3vh;
     right: 6.275vw;
     height: 6vw;
-    width: 94vh;
+    width: 105vh;
     color: #fcfaf4;
     background-color: #D74B4B;
+    z-index: -1;
 }
 
 form {
@@ -67,7 +72,7 @@ form {
     width: 90%;
     height: 80vh;
     right: 5%;
-    top: 13vh;
+    top: 8vh;
 }
 
 .site_name {
@@ -179,29 +184,33 @@ input:checked+.bad_inline_label::before {
         position: absolute;
         width: 90%;
         right: 5%;
-        top: 16%;
+        top: 10vh;
     }
 
     .kininaranai_zone {
         transform-origin: Top Left;
         transform: rotate(90deg);
         position: absolute;
+        top: -3vh;
         left: 6vw;
         height: 6vw;
-        width: 94vh;
+        width: 105vh;
         color: #fcfaf4;
         background-color: #475F77;
+        z-index: -1;
     }
-
+    
     .kininaru_zone {
         transform-origin: Top right;
         transform: rotate(-90deg);
         position: absolute;
-        right: 6vw;
+        top: -3vh;
+        right: 6.275vw;
         height: 6vw;
-        width: 94vh;
+        width: 105vh;
         color: #fcfaf4;
         background-color: #D74B4B;
+        z-index: -1;
     }
 
 }
