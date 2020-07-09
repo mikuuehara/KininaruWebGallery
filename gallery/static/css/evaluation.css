@@ -7,7 +7,7 @@ body {
     background-color: #fcfaf4;
     color: #383A36;
     font-family: 'Noto Sans JP', sans-serif;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
