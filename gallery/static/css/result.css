@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     height: 100%;
     color: #383A36;
@@ -6,7 +6,7 @@ body{
     text-align: center;
 }
 
-header{
+header {
     text-align: center;
     background-color: #D6CEAF;
     height: 7vh;
@@ -20,14 +20,14 @@ header{
     vertical-align: middle;
 }
 
-.block1{
+.block1 {
     width: 90%;
     margin: auto;
     text-align: center;
 }
 
 
-h1{
+h1 {
     text-align: left;
     font-weight: normal;
     font-size: 3vh;
@@ -38,12 +38,12 @@ h1{
 
 
 
-a{
+a {
     text-decoration: none;
     color: #383A36;
 }
 
-.site_block{
+.site_block {
     display: inline-block;
     width: 46%;
     margin-bottom: 2vh;
@@ -53,9 +53,11 @@ a{
 .site_block img {
     width: 90%;
     box-shadow: 2px 2px 4px gray;
+    padding: 2px 4px 4px 4px;
+
 }
 
-.to_top{
+.to_top {
     display: block;
     width: 50vw;
     margin: 5vh auto 7vh auto;
@@ -68,4 +70,21 @@ a{
     border-radius: 3px;
     transition: .4s;
 
+}
+
+@media screen and (min-width: 480px) {
+
+    .site_block {
+        display: inline-block;
+        width: 23%;
+        margin-bottom: 2vh;
+        vertical-align: top;
+    }
+
+    .site_block img {
+        width: 90%;
+        box-shadow: 2px 2px 4px gray;
+        padding: 2px 4px 4px 4px;
+
+    }
 }

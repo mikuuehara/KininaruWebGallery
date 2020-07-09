@@ -22,19 +22,20 @@
     </div>
   </header>
 
-  <form action="" method="POST">
+  <div class="kininaranai_zone">キニナラナイ</div>
+
+  <form action="" method="POST" class="eval_form">
 
     {% csrf_token %}
     {% for siteinf in siteinfs %}
 
-    <div class="one_form" id="{{forloop.counter}}">
-      <span class="site_name">{{ siteinf.name }}</span>
+    <div class="one_form {{ siteinf.id }}" id="{{forloop.counter}}">
       <div class="eval_block">
-        <img src="{{ siteinf.img_sm.url }}" />
+        <img class="{{ siteinf.id }}" src="{{ siteinf.img_sm.url }}" />
       </div>
+      <span class="site_name">{{ siteinf.name }}</span>
 
       <fieldset class="good_bad">
-
         <input type="radio" value="good" id="g_id_{{ siteinf.id }}" class="{{ siteinf.id }}" name="{{ siteinf.id }}"
           required>
         <label class="good_inline_label" for="g_id_{{ siteinf.id }}">
@@ -43,12 +44,15 @@
         <label class="bad_inline_label" for="b_id_{{ siteinf.id }}">
         </label>
       </fieldset>
+
     </div>
 
     {% endfor %}
 
     <button type="submit" name="eval" id="submit_btn">結果を表示</button>
   </form>
+
+  <div class="kininaru_zone">キニナル</div>
 
 </body>
 
