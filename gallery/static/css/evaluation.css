@@ -35,7 +35,7 @@ header {
     top: -3vh;
     left: 6vw;
     height: 6vw;
-    width: 90vh;
+    width: 93vh;
     color: #fcfaf4;
     background-color: #475F77;
     z-index: -1;
@@ -48,7 +48,7 @@ header {
     top: -3vh;
     right: 6.275vw;
     height: 6vw;
-    width: 90vh;
+    width: 93vh;
     color: #fcfaf4;
     background-color: #D74B4B;
     z-index: -1;
@@ -72,7 +72,7 @@ form {
     width: 86%;
     height: 80vh;
     right: 7%;
-    top: 6.5vh;
+    top: 6.8vh;
 }
 
 .site_name {
@@ -184,7 +184,7 @@ input:checked+.bad_inline_label::before {
         position: absolute;
         width: 90%;
         right: 5%;
-        top: 8vh;
+        top: 11vh;
     }
 
     .kininaranai_zone {
@@ -194,7 +194,7 @@ input:checked+.bad_inline_label::before {
         top: -10vh;
         left: 6vw;
         height: 6vw;
-        width: 90vh;
+        width: 100vh;
         color: #fcfaf4;
         background-color: #475F77;
         z-index: -1;
@@ -207,7 +207,7 @@ input:checked+.bad_inline_label::before {
         top: -10vh;
         right: 6.275vw;
         height: 6vw;
-        width: 90vh;
+        width: 100vh;
         color: #fcfaf4;
         background-color: #D74B4B;
         z-index: -1;
