@@ -13,9 +13,7 @@ body {
 
 header {
     text-align: center;
-    background-color: #D6CEAF;
     height: 6vh;
-
 }
 
 .inline_header {
@@ -34,11 +32,12 @@ header {
     position: absolute;
     top: -3vh;
     left: 6vw;
-    height: 6vw;
+    height: 9vw;
     width: 93vh;
     color: #fcfaf4;
     background-color: #475F77;
-    z-index: -1;
+    z-index: 2;
+    transition: 0.5s;
 }
 
 .kininaru_zone {
@@ -46,12 +45,13 @@ header {
     transform: rotate(-90deg);
     position: absolute;
     top: -3vh;
-    right: 6.275vw;
-    height: 6vw;
+    right: 6vw;
+    height: 9vw;
     width: 93vh;
     color: #fcfaf4;
     background-color: #D74B4B;
-    z-index: -1;
+    z-index: 2;
+    transition: 0.5s;
 }
 
 form {
@@ -165,7 +165,7 @@ input:checked+.bad_inline_label::before {
     font-size: 3vh;
     font-weight: bold;
     right: 20%;
-    bottom: 45%;
+    bottom: 55%;
     padding: 0.3em 1em;
     text-decoration: none;
     color: #383A36;
@@ -184,7 +184,7 @@ input:checked+.bad_inline_label::before {
         position: absolute;
         width: 90%;
         right: 5%;
-        top: 11vh;
+        top: 13vh;
     }
 
     .kininaranai_zone {
@@ -193,11 +193,12 @@ input:checked+.bad_inline_label::before {
         position: absolute;
         top: -10vh;
         left: 6vw;
-        height: 6vw;
-        width: 100vh;
+        height: 9vw;
+        width: 105vh;
         color: #fcfaf4;
         background-color: #475F77;
-        z-index: -1;
+        z-index: 2;
+        transition: 0.5s;
     }
     
     .kininaru_zone {
@@ -206,11 +207,12 @@ input:checked+.bad_inline_label::before {
         position: absolute;
         top: -10vh;
         right: 6.275vw;
-        height: 6vw;
-        width: 100vh;
+        height: 9vw;
+        width: 105vh;
         color: #fcfaf4;
         background-color: #D74B4B;
-        z-index: -1;
+        z-index: 2;
+        transition: 0.5s;
     }
 
 }

@@ -59,9 +59,20 @@ $(function () {
 
         if (moveX == "left") {
             // 左スワイプで気にならない
-            //console.log('target_name', target_name);
             $('input[name=' + target_name + ']:eq(1)').prop('checked', true);
-            $('.one_form' + '.' + target_name).css('display', 'none');
+
+            // 左にスライド
+            $('.one_form' + '.' + target_name).animate({
+                right: '+=100vw'
+            }, 400);
+
+            // 揺らす
+            setTimeout(function () {
+                $('.kininaranai_zone').css('left', '8vw');
+            }, 300);
+            setTimeout(function () {
+                $('.kininaranai_zone').css('left', '6vw');
+            }, 500);
 
             // 分子の変更
             if (num2 == -1) {
@@ -72,10 +83,21 @@ $(function () {
             }
 
         } else if (moveX == "right") {
-            //右スワイプで気になる
+            // 右スワイプで気になる
             $('input[name=' + target_name + ']:eq(0)').prop('checked', true);
-            $('.one_form' + '.' + target_name).css('display', 'none');
 
+            // 右にスライド
+            $('.one_form' + '.' + target_name).animate({
+                left: '+=100vw'
+            }, 400);
+
+            // 揺らす
+            setTimeout(function () {
+                $('.kininaru_zone').css('right', '8vw');
+            }, 300);
+            setTimeout(function () {
+                $('.kininaru_zone').css('right', '6vw');
+            }, 500);
 
             // 分子の変更
             if (num2 == -1) {
@@ -87,7 +109,6 @@ $(function () {
         } else {
             console.log("移動してません");
         }
-
 
         if (moveY == "top") {
             msgY = "上へ移動";
@@ -112,18 +133,17 @@ $(function () {
         return (event.originalEvent.touches[0].pageX);
     }
 
-    
+
     /* ボタンでの挙動 */
-    $(".one_form").change(function () {  
-        var i = $(this).attr('id');  
-        
+    $(".one_form").change(function () {
+        var i = $(this).attr('id');
+
         $(this).delay(300).fadeOut();
-        
-        if(i == 1){
-            $("#submit_btn").delay(600).css('display','inline-block');
-        }
-        else{
-            $(".now_num").text(Number(num)-i+2); 
+
+        if (i == 1) {
+            $("#submit_btn").delay(600).css('display', 'inline-block');
+        } else {
+            $(".now_num").text(Number(num) - i + 2);
         }
     })
 
