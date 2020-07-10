@@ -7,9 +7,34 @@ $(function () {
     let num2 = num - 2;
 
     // 表示できるサイトが0だったとき
-    if(num == 0){
-        $(".site_none").css("display","inline-block");
+    if (num == 0) {
+        $(".site_none").css("display", "inline-block");
+        $(".popup").css("display", "none");
     }
+
+    // スワイプ評価アナウンス
+    if ($(".popup").css('display') != 'none') {
+        setTimeout(function () {
+            $(".fa-hand-point-up").animate({
+                right: '35vw'
+            }, 1000);
+
+            setTimeout(function () {
+                $(".fa-hand-point-up").animate({
+                    right: '-5vw'
+                }, 1000);
+                
+            }, 1000);
+        }, 500);
+    }
+
+    // 画面に触れたらpopupを消す
+    setTimeout(function(){
+        $(".popup").on("touchstart", function(){
+            $(this).css("display", "none");
+        });
+    }, 700);
+    
 
     // 指が触れたらstart_checkを実行
     $(".one_form").on("touchstart", start_check);
@@ -29,6 +54,9 @@ $(function () {
         // 移動距離状態を初期化 
         moveY = '';
         moveX = '';
+
+        //下の重なりを消す
+        $('img' + '.'+ event.target.className).css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
     }
 
     function move_check(event) {
@@ -56,10 +84,13 @@ $(function () {
 
 
     function end_check(event) {
+        //console.log(num2);
 
         // 現在評価中のフィールドid
         var target_name = event.target.className;
+        
         //console.log(num)
+        console.log(target_name);
 
         if (moveX == "left") {
             // 左スワイプで気にならない
@@ -86,6 +117,11 @@ $(function () {
                 num2--;
             }
 
+            if (num2 == -1){
+                $(".eval_block img").css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
+            }
+
+
         } else if (moveX == "right") {
             // 右スワイプで気になる
             $('input[name=' + target_name + ']:eq(0)').prop('checked', true);
@@ -109,6 +145,10 @@ $(function () {
             } else {
                 $(".now_num").text(num - num2);
                 num2--;
+            }
+
+            if (num2 == -1){
+                $(".eval_block img").css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
             }
         } else {
             console.log("移動してません");

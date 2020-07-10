@@ -22,13 +22,34 @@
     </div>
   </header>
 
-  <div class="kininaranai_zone">キニナラナイ</div>
+
 
   <div class="site_none">
     <p>ごめんなさい<br>
       該当するサイトがありません</p>
     <a class="to_top" href="{% url 'top' %}">最初から</a>
   </div>
+
+
+  <div class="popup">
+    <div class="inline_popup">
+      <div class="arrows_comment">
+        スワイプで評価
+      </div>
+      <i class="fas fa-arrows-alt-h">
+      </i>
+
+      <i class="fas fa-hand-point-up"></i>
+      <!--
+      <p><button id="close" class="button-link" onclick="window_close();">閉じる</button></p>
+      -->
+    </div>
+  </div>
+
+
+
+  <div class="kininaranai_zone">キニナラナイ</div>
+
   <form action="" method="POST" class="eval_form">
 
     {% csrf_token %}
