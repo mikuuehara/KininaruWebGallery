@@ -103,22 +103,12 @@ h1 {
 
 .sel {
     position: relative;
-    border: none;
     width: 20vh;
+    border: none;
     border-bottom: solid 1px #2A2A2A;
     padding: 0.5em;
 }
 
-select:after{
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    color: #2A2A2A;
-    content: '\f0d8';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 16px;
-}
 
 select{
     -webkit-appearance: none;
