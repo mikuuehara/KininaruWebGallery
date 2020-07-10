@@ -114,6 +114,7 @@ h1 {
 select{
     -webkit-appearance: none;
     border: none;
+    box-sizing: content-box;
 }
 
 
@@ -125,7 +126,6 @@ select{
     margin-bottom: 3vh;
 }
 .rule {
-
     margin: 0;
     width: 100%;
 }
