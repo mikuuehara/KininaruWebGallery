@@ -105,16 +105,17 @@ h1 {
     position: relative;
     width: 20vh;
     border: none;
+    border-radius: 0;
     border-bottom-color: #2A2A2A;
-    border-bottom-style:  solid;
+    border-bottom-style: solid;
     padding: 0.5em;
 }
 
 
 select{
     -webkit-appearance: none;
-    border: none;
     box-sizing: content-box;
+    background-color: #FDFDFD;
 }
 
 
