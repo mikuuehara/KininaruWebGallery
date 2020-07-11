@@ -1,17 +1,14 @@
-// pc/ipadの時はpcサイト画像を表示
-/*
-if ($(".fieldset").css('display') != 'none') {
-    $("img").attr('src', "{{ siteinf.img_pc.url }}");
-}
-*/
-
 $(function () {
 
-    /* タッチパネルでの挙動 */
     var moveX, moveY, posiY, posiX;;
     // 母数
     let num = Number($(".now_num").attr('id'));
     let num2 = num - 2;
+
+    // loading
+    $(window).on('load', function(){
+        $('.loading').fadeOut();	
+    });
 
     // 表示できるサイトが0だったとき
     if (num == 0) {

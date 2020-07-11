@@ -26,6 +26,24 @@ header {
     vertical-align: middle;
 }
 
+/* loading */
+.loading {
+	width: 100%;
+	height: 100%;
+	background: #2A2A2A;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 5;
+}
+
+.loading img {
+	width: 30vh;
+	position: absolute;
+	top: 40%;
+	left: calc((100vw - 30vh) / 2);
+}
+
 
 
 /* 該当サイトが無かった時 */
@@ -75,21 +93,21 @@ header {
     position: relative;
     font-size: 5vw;
     font-weight: bold;
-    color: #c2c2c2;
+    color: rgb(253, 253, 253, 0.9);
     top: 25vh;
 }
 
 .fa-arrows-alt-h {
     position: relative;
     font-size: 20vw;
-    color: #c2c2c2;
+    color: rgb(253, 253, 253, 0.9);
     top: 23vh;
 }
 
 .fa-hand-point-up {
     position: relative;
     font-size: 25vw;
-    color: #c2c2c2;
+    color: rgb(253, 253, 253, 0.9);
     top: 35vh;
     transition: ease;
 }
