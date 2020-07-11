@@ -5,9 +5,25 @@ $(function () {
     let num = Number($(".now_num").attr('id'));
     let num2 = num - 2;
 
-    // loading
-    $(window).on('load', function(){
-        $('.loading').fadeOut();	
+    // loadingが終わってからスワイプ操作アナウンスを出す
+    $(window).on('load', function () {
+        $('.loading').fadeOut();
+
+        // スワイプ操作アナウンス
+        if ($(".popup").css('display') != 'none') {
+            setTimeout(function () {
+                $(".fa-hand-point-up").animate({
+                    right: '35vw'
+                }, 1000);
+
+                setTimeout(function () {
+                    $(".fa-hand-point-up").animate({
+                        right: '-5vw'
+                    }, 1000);
+
+                }, 1000);
+            }, 500);
+        }
     });
 
     // 表示できるサイトが0だったとき
@@ -16,21 +32,7 @@ $(function () {
         $(".popup").css("display", "none");
     }
 
-    // スワイプ評価アナウンス
-    if ($(".popup").css('display') != 'none') {
-        setTimeout(function () {
-            $(".fa-hand-point-up").animate({
-                right: '35vw'
-            }, 1000);
 
-            setTimeout(function () {
-                $(".fa-hand-point-up").animate({
-                    right: '-5vw'
-                }, 1000);
-
-            }, 1000);
-        }, 500);
-    }
 
     // 画面に触れたらpopupを消す
     setTimeout(function () {
