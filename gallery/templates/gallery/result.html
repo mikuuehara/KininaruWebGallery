@@ -7,10 +7,10 @@
   <title>評価結果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="content-type" charset="utf-8">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/result.css' %}">
   <!--
-  <script type="text/javascript" src="{% static 'js/top.js' %}"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/result.js' %}"></script>
   -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
 </head>
@@ -19,10 +19,11 @@
   <header>
     <div class="inline_header">
       <a href="{% url 'top' %}">
-        <img src="{% static 'img/logo2.png' %}" alt="ロゴ"/>
+        <img src="{% static 'img/logo2.png' %}" alt="ロゴ" />
       </a>
     </div>
   </header>
+
 
   <div class="block1">
     <h1 class="good_h1">気になるサイト</h1>
@@ -38,7 +39,6 @@
       </p>
     </div>
     {% endfor %}
-
 
     <h1 class="bad_h1">気にならないサイト</h1>
     {% for bad_siteinf in bad_siteinfs %}

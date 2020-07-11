@@ -180,6 +180,7 @@ form {
     background-color: #FDFDFD;
     font-size: small;
     width: 90%;
+    height: 3em;
 }
 
 .eval_block img {
@@ -188,11 +189,13 @@ form {
     text-align: center;
     position: relative;
     box-shadow:
-        0px 2px 3px rgb(173, 172, 172),
+        0px 1px 2px rgb(173, 172, 172),
         0px 4px 0px #FDFDFD,
-        0px 6px 3px rgb(173, 172, 172);
+        0px 5px 2px rgb(173, 172, 172),
+        0px 8px 0px #FDFDFD,
+        0px 9px 2px rgb(173, 172, 172);
     padding: 2px 4px 4px 4px;
-    margin: 0.7vh 0;
+    margin: 0 0 0.7vh 0;
 
 }
 
@@ -421,6 +424,7 @@ input:checked+.bad_inline_label::before {
         transition: all .4s;
         background-color: #FDFDFD;
     }
+    
 
     .good_inline_label::before {
         font-family: "Font Awesome 5 Free";
@@ -428,9 +432,8 @@ input:checked+.bad_inline_label::before {
         font-weight: 900;
         font-size: 5.0em;
         color: #F04E2B;
-
     }
-
+    
     .bad_inline_label {
         display: inline-block;
         padding: 0.2em 1em;

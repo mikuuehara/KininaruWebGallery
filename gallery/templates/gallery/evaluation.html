@@ -49,12 +49,9 @@
 
 
   <div class="kininaranai_zone">キニナラナイ</div>
-
   <form action="" method="POST" class="eval_form">
-
     {% csrf_token %}
     {% for siteinf in siteinfs %}
-
     <div class="one_form {{ siteinf.id }}" id="{{forloop.counter}}">
       <div class="eval_block">
         <img class="{{ siteinf.id }}" src="{{ siteinf.img_sm.url }}" />

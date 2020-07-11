@@ -1,3 +1,10 @@
+// pc/ipadの時はpcサイト画像を表示
+/*
+if ($(".fieldset").css('display') != 'none') {
+    $("img").attr('src', "{{ siteinf.img_pc.url }}");
+}
+*/
+
 $(function () {
 
     /* タッチパネルでの挙動 */
@@ -23,18 +30,18 @@ $(function () {
                 $(".fa-hand-point-up").animate({
                     right: '-5vw'
                 }, 1000);
-                
+
             }, 1000);
         }, 500);
     }
 
     // 画面に触れたらpopupを消す
-    setTimeout(function(){
-        $(".popup").on("touchstart", function(){
+    setTimeout(function () {
+        $(".popup").on("touchstart", function () {
             $(this).css("display", "none");
         });
     }, 700);
-    
+
 
     // 指が触れたらstart_checkを実行
     $(".one_form").on("touchstart", start_check);
@@ -56,7 +63,10 @@ $(function () {
         moveX = '';
 
         //下の重なりを消す
-        $('img' + '.'+ event.target.className).css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
+        $('img' + '.' + event.target.className).css({
+            'box-shadow': '0px 2px 3px rgb(173, 172, 172)',
+            'margin': '0.7vh 0 0 0'
+        });
     }
 
     function move_check(event) {
@@ -84,13 +94,8 @@ $(function () {
 
 
     function end_check(event) {
-        //console.log(num2);
-
         // 現在評価中のフィールドid
         var target_name = event.target.className;
-        
-        //console.log(num)
-        console.log(target_name);
 
         if (moveX == "left") {
             // 左スワイプで気にならない
@@ -117,8 +122,12 @@ $(function () {
                 num2--;
             }
 
-            if (num2 == -1){
-                $(".eval_block img").css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
+            if (num2 == -1) {
+                // 最後の一枚
+                $(".eval_block img").css('box-shadow', '0px 2px 3px rgb(173, 172, 172)');
+            } else if (num2 == 0) {
+                // 最後の二枚
+                $(".eval_block img").css('box-shadow', '0px 2px 3px rgb(173, 172, 172), 0px 4px 0px #FDFDFD, 0px 5px 2px rgb(173, 172, 172)');
             }
 
 
@@ -147,11 +156,36 @@ $(function () {
                 num2--;
             }
 
-            if (num2 == -1){
-                $(".eval_block img").css('box-shadow','0px 2px 3px rgb(173, 172, 172)');
+            if (num2 == -1) {
+                // 最後の一枚
+                $(".eval_block img").css('box-shadow', '0px 2px 3px rgb(173, 172, 172)');
+            } else if (num2 == 0) {
+                // 最後の二枚
+                $(".eval_block img").css('box-shadow', '0px 2px 3px rgb(173, 172, 172), 0px 4px 0px #FDFDFD, 0px 5px 2px rgb(173, 172, 172)');
             }
+
         } else {
-            console.log("移動してません");
+
+            // フル影
+            var boxshadow = "0px 1px 2px rgb(173, 172, 172),0px 4px 0px #FDFDFD, 0px 5px 2px rgb(173, 172, 172), 0px 8px 0px #FDFDFD, 0px 9px 2px rgb(173, 172, 172)"
+            if (num2 == -1) {
+                // 最後の一枚
+                $('img' + '.' + event.target.className).css({
+                    'margin': '0 0 0.7vh 0',
+                    'box-shadow': '0px 2px 3px rgb(173, 172, 172)'
+                });
+            } else if (num2 == 0) {
+                // 最後の二枚
+                $('img' + '.' + event.target.className).css({
+                    'margin': '0 0 0.7vh 0',
+                    'box-shadow': '0px 2px 3px rgb(173, 172, 172), 0px 4px 0px #FDFDFD, 0px 5px 2px rgb(173, 172, 172)'
+                });
+            } else {
+                $('img' + '.' + event.target.className).css({
+                    'margin': '0 0 0.7vh 0',
+                    'box-shadow': boxshadow
+                });
+            }
         }
 
         if (moveY == "top") {
