@@ -12,6 +12,7 @@ body {
 
 
 header {
+    font-family: 'M PLUS 1p', sans-serif;
     text-align: center;
     height: 6vh;
 }
@@ -25,6 +26,20 @@ header {
     top: 1vh;
     vertical-align: middle;
 }
+
+
+/* 上部のサイト数表示 */
+.now_num {
+    display: inline;
+}
+
+.slash {
+    font-size: 2.5vh;
+}
+
+/*  */
+
+
 
 /* loading */
 .loading {
@@ -165,18 +180,6 @@ header {
 }
 
 
-/* 上部のサイト数表示 */
-.now_num {
-    display: inline;
-}
-
-.slash {
-    font-size: 2.5vh;
-}
-
-/*  */
-
-
 
 
 /* 評価フォーム */
@@ -294,12 +297,14 @@ input:checked+.bad_inline_label::before {
 #submit_btn {
     display: none;
     position: absolute;
-    width: 60%;
-    font-size: 3vh;
-    font-weight: bold;
-    right: 20%;
-    bottom: 55%;
-    padding: 0.3em 1em;
+    width: 50%;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3.5vh;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    right: 25%;
+    bottom: 53%;
+    padding: 0.5em 1em;
     text-decoration: none;
     color: #FDFDFD;
     background-color: #2A2A2A;
@@ -393,6 +398,16 @@ input:checked+.bad_inline_label::before {
         top: 6vh;
     }
 
+
+    .site_name {
+        display: inline-block;
+        background-color: #FDFDFD;
+        font-size: small;
+        width: 90%;
+        height: 1.5em;
+    }
+
+
     .kininaranai_zone {
         transform-origin: Top Left;
         transform: rotate(90deg);
@@ -425,7 +440,7 @@ input:checked+.bad_inline_label::before {
         border: none;
         padding: 0;
         text-align: center;
-        bottom: 3vh;
+        bottom: 5vh;
         display: inline-block;
         width: 100%;
     }

@@ -99,7 +99,7 @@ class result(TemplateView):
     def get(self, request):
         return render(request, 'gallery/result.html')
 
-
+"""
 ### management page ###
 class register(TemplateView):
     color_form_class = ColorForm
@@ -176,4 +176,4 @@ class register(TemplateView):
     def form_save(self, form):
         obj = form.save()
         return obj
-
+"""

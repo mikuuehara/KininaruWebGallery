@@ -54,14 +54,14 @@ hr {
 
 form {
     text-align: center;
-    margin-top: 3vh;
+    margin: 3vh auto;
 }
 
 h1 {
     text-align: left;
     font-weight: normal;
     font-size: 3vh;
-    margin-bottom: 0.4em;
+    margin: 5vh 0 1vh 0;
 }
 
 .mini {
@@ -133,10 +133,12 @@ select{
 
 .select_btn {
     display: block;
-    width: 50vw;
+    width: 7em;
     margin: 6vh auto 5vh auto;
-    padding: 0.3em 1em;
-    font-size: 3vh;
+    padding: 0.5em 1em;
+    font-size: 3.5vh;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     text-decoration: none;
     color: #FDFDFD;
     background-color: #2A2A2A;
@@ -154,36 +156,33 @@ select{
 }
 
 @media screen and (min-width: 480px) {
-    /* 幅960px以上に適用されるCSS（PC半画面用） */
+    /* 幅960px以上に適用されるCSS（PC半画面以上用） */
 
     .explanation {
         font-weight: normal;
         font-size: 2vh;
         line-height: 1.5;
         text-align: center;
-        margin: 6vh 0 7vh 0;
+        margin: 4vh 0 4vh 0;
     }
-}
 
-@media screen and (min-width: 960px) {
 
-    /* 幅960px以上に適用されるCSS（PC全画面用） */
     .block1 {
         margin: 3% 10%;
         width: 80%;
     }
 
     form {
-        width: 70%;
-        margin: auto;
+        width: 90%;
     }
+
 
     .select_btn {
         display: block;
-        width: 30vw;
+        width: 7em;
         margin: 7vh auto 7vh auto;
-        padding: 0.3em 1em;
-        font-size: 3vh;
+        padding: 0.5em 1em;
+        font-size: 3.5vh;
         text-decoration: none;
         color: #FDFDFD;
         background-color: #2A2A2A;
@@ -191,5 +190,4 @@ select{
         border-radius: 3px;
         transition: .4s;
     }
-
 }
