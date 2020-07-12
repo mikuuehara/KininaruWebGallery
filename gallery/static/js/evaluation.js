@@ -5,11 +5,12 @@ $(function () {
     let num = Number($(".now_num").attr('id'));
     let num2 = num - 2;
 
-    // loadingが終わってからスワイプ操作アナウンスを出す
+    // loadingが終わったとき
     $(window).on('load', function () {
+        // loading画面消す
         $('.loading').fadeOut();
 
-        // スワイプ操作アナウンス
+        // スワイプ操作アナウンス出す
         if ($(".popup").css('display') != 'none') {
             setTimeout(function () {
                 $(".fa-hand-point-up").animate({
@@ -25,6 +26,7 @@ $(function () {
             }, 500);
         }
     });
+
 
     // 表示できるサイトが0だったとき
     if (num == 0) {
@@ -69,25 +71,24 @@ $(function () {
     }
 
     function move_check(event) {
-        if (posiX - getX(event) > 70) // 70px以上移動でスワイプと判断
-        {
+        // 70px以上移動でスワイプと判断
+        if (posiX - getX(event) > 70) {
             // 右→左
             moveX = "left";
-
-        } else if (posiX - getX(event) < -70) // 70px以上移動でスワイプと判断
-        {
+        }
+        // 70px以上移動でスワイプと判断 
+        else if (posiX - getX(event) < -70) {
             // 左→右
             moveX = "right";
         }
 
-        if (posiY - getY(event) > 70) // 70px以上移動でスワイプと判断
-        {
+        // 70px以上移動でスワイプと判断
+        if (posiY - getY(event) > 70) {
             // 下→上
-
-        } else if (posiY - getY(event) < -70) // 70px以上移動でスワイプと判断
-        {
+        }
+        // 70px以上移動でスワイプと判断 
+        else if (posiY - getY(event) < -70) {
             // 上→下			
-
         }
     }
 
@@ -100,7 +101,7 @@ $(function () {
             // 左スワイプで気にならない
             $('input[name=' + target_name + ']:eq(1)').prop('checked', true);
 
-            // 左にスライド
+            // formを左にスライドして画面外
             $('.one_form' + '.' + target_name).animate({
                 right: '+=100vw'
             }, 400);
@@ -134,7 +135,7 @@ $(function () {
             // 右スワイプで気になる
             $('input[name=' + target_name + ']:eq(0)').prop('checked', true);
 
-            // 右にスライド
+            // formを右にスライドして画面外
             $('.one_form' + '.' + target_name).animate({
                 left: '+=100vw'
             }, 400);
@@ -165,7 +166,7 @@ $(function () {
 
         } else {
 
-            // フル影
+            // 重なり3枚
             var boxshadow = "0px 1px 2px rgb(173, 172, 172),0px 4px 0px #FDFDFD, 0px 5px 2px rgb(173, 172, 172), 0px 8px 0px #FDFDFD, 0px 9px 2px rgb(173, 172, 172)"
             if (num2 == -1) {
                 // 最後の一枚
@@ -194,8 +195,6 @@ $(function () {
         } else {
             msgY = "移動なし";
         }
-
-
     }
 
 
@@ -211,7 +210,7 @@ $(function () {
     }
 
 
-    /* ボタンでの挙動 */
+    // ボタンでの挙動
     $(".one_form").change(function () {
         var i = $(this).attr('id');
 

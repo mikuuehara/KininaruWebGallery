@@ -29,7 +29,7 @@
     <h1 class="good_h1">気になるサイト</h1>
     {% for good_siteinf in good_siteinfs %}
     <div class="site_block good">
-      <a href="{{ good_siteinf.url }}">
+      <a href="{{ good_siteinf.url }}" target="_blank">
         <img src="{{ good_siteinf.img_sm.url }}" />
       </a>
       <p class="name">
@@ -43,7 +43,7 @@
     <h1 class="bad_h1">気にならないサイト</h1>
     {% for bad_siteinf in bad_siteinfs %}
     <div class="site_block bad">
-      <a href="{{ bad_siteinf.url }}">
+      <a href="{{ bad_siteinf.url }}" target="_blank">
         <img src="{{ bad_siteinf.img_sm.url }}" />
       </a>
       <p class="name">
@@ -54,7 +54,7 @@
     </div>
     {% endfor %}
 
-    <a class="to_top" href="{% url 'top' %}">最初から</a>
+    <a class="to_top" href="{% url 'top' %}">TOPへ</a>
   </div>
 
 

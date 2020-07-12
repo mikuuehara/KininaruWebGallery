@@ -116,6 +116,7 @@ select{
     -webkit-appearance: none;
     box-sizing: content-box;
     background-color: #FDFDFD;
+    cursor: pointer;
 }
 
 
@@ -145,6 +146,7 @@ select{
     border: solid 2px #2A2A2A;
     border-radius: 3px;
     transition: .4s;
+    cursor: pointer;
 }
 
 

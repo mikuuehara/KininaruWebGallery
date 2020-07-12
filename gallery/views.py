@@ -10,8 +10,6 @@ from django.views.generic import TemplateView
 class top(TemplateView):
     select_form_class = SelectForm
     template_name ='gallery/top.html'
-  
-    print("頑張れー！")
 
     def get(self, request):
         context = {
@@ -19,15 +17,14 @@ class top(TemplateView):
                 }
         return render(request, 'gallery/top.html', context)
 
+
+    ### posted selectform ###
     def post(self, request):
         select_form = self.select_form_class(request.POST)
-        #eval_form = self.eval_form_class(request.POST)
         context = self.get_context_data(
             select_form=select_form,
-            #eval_form=eval_form
             )
 
-        ### 未選択のオブジェクトが取得できそうに無かったのでformを変えてみる ###
         if 'select' in self.request.POST:
              if select_form.is_valid():
                 ### 選ばれた色をリストとして取り出す ###
@@ -58,8 +55,7 @@ class top(TemplateView):
                     filter2 = filter1.order_by('-add_date')[:selected_num]
                 else:
                     filter2 = filter1.order_by('?')[:selected_num]
-                     
-                print(filter2.count())
+        
                 show_num = filter2.count()
                 context = {
                     'siteinfs' : filter2,
@@ -74,8 +70,7 @@ class top(TemplateView):
             good_site_id_list = [k for k, v in qery_direct.items() if v == 'good']
             bad_site_id_list = [k for k, v in qery_direct.items() if v == 'bad']
 
-    
-            print(good_site_id_list)
+
             good_siteinfs = Website.objects.filter(id__in = good_site_id_list)
             bad_siteinfs = Website.objects.filter(id__in = bad_site_id_list)
             context={

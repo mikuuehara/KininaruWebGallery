@@ -43,20 +43,20 @@ header {
 
 /* loading */
 .loading {
-	width: 100%;
-	height: 100%;
-	background: #2A2A2A;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 5;
+    width: 100%;
+    height: 100%;
+    background: #2A2A2A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
 }
 
 .loading img {
-	width: 30vh;
-	position: absolute;
-	top: 40%;
-	left: calc((100vw - 30vh) / 2);
+    width: 30vh;
+    position: absolute;
+    top: 40%;
+    left: calc((100vw - 30vh) / 2);
 }
 
 
@@ -393,17 +393,21 @@ input:checked+.bad_inline_label::before {
     .one_form {
         text-align: center;
         position: absolute;
-        width: 50vh;
-        right: calc((100vw - 50vh) / 2);
+        width: 70vh;
+        right: calc((100vw - 70vh) / 2);
         top: 6vh;
     }
 
+
+    .eval_block img {
+        width: 40vh;
+    }
 
     .site_name {
         display: inline-block;
         background-color: #FDFDFD;
         font-size: small;
-        width: 90%;
+        width: 100%;
         height: 1.5em;
     }
 
@@ -457,7 +461,7 @@ input:checked+.bad_inline_label::before {
         transition: all .4s;
         background-color: #FDFDFD;
     }
-    
+
 
     .good_inline_label::before {
         font-family: "Font Awesome 5 Free";
@@ -466,7 +470,7 @@ input:checked+.bad_inline_label::before {
         font-size: 5.0em;
         color: #F04E2B;
     }
-    
+
     .bad_inline_label {
         display: inline-block;
         padding: 0.2em 1em;
